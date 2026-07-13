@@ -1,121 +1,950 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  th {
-    background-color: #2c3e50;
-    color: white;
-    text-align: left;
-    padding: 12px 15px;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dddddd;
-    color: #333;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  tr:nth-of-type(even) {
-    background-color: #f3f4f6;
-  }
-  tr:last-of-type td {
-    border-bottom: 2px solid #2c3e50;
-  }
- .highlight {
-    font-weight: bold;
-    color: #2c3e50;
-  }
- .tag {
-    background: #e1f5fe;
-    color: #0288d1;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: bold;
-    display: inline-block;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTU V-Sem Prep Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-code {
+      font-family: 'Fira Code', monospace;
+    }
+    /* Custom scrollbar for premium touch */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6366f1;
+    }
+    /* Pulsing red animation for live status */
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.1); }
+    }
+    .pulse-live {
+      animation: pulse-red 2s infinite;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-[#0b0f19] min-h-screen text-slate-100 transition-colors duration-300">
 
-<table>
-  <thead>
-    <tr>
-      <th>RTU Code</th>
-      <th>Subject Name</th>
-      <th>Primary Channel</th>
-      <th>Alternative Channels</th>
-      <th>Alignment</th>
-      <th>Key Exam Focus Areas</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="highlight">5CS3-01</td>
-      <td class="highlight">Information Theory & Coding</td>
-      <td>RTU Wallah</td>
-      <td>Easy Engineering Classes<br>Engineering Funda</td>
-      <td><span class="tag" style="background:#ffebee; color:#c62828;">Very High</span></td>
-      <td>Entropy, mutual information calculations, Shannon-Fano, Huffman coding, and cyclic/linear block codes.</td>
-    </tr>
-    <tr>
-      <td class="highlight">5CS4-02</td>
-      <td class="highlight">Compiler Design</td>
-      <td>Gate Smashers</td>
-      <td>Neso Academy<br>Knowledge GATE</td>
-      <td><span class="tag">High</span></td>
-      <td>Constructing parsing tables (LL(1), LR(0), SLR(1), CLR(1), LALR(1)), SDT evaluation, and code optimization.</td>
-    </tr>
-    <tr>
-      <td class="highlight">5CS4-03</td>
-      <td class="highlight">Operating Systems</td>
-      <td>Neso Academy</td>
-      <td>Gate Smashers</td>
-      <td><span class="tag">High</span></td>
-      <td>CPU scheduling, deadlock avoidance/prevention (Banker's Algorithm), paging, segmentation, and page replacement.</td>
-    </tr>
-    <tr>
-      <td class="highlight">5CS4-04</td>
-      <td class="highlight">Computer Graphics & Multimedia</td>
-      <td>TutorialsSpace</td>
-      <td>Edulogy<br>5 Minutes Engineering</td>
-      <td><span class="tag" style="background:#ffebee; color:#c62828;">Very High</span></td>
-      <td>DDA and Bresenham's algorithms, 2D/3D transformations, Bezier/B-Spline curves, and polygon filling.</td>
-    </tr>
-    <tr>
-      <td class="highlight">5CS4-05</td>
-      <td class="highlight">Analysis of Algorithms</td>
-      <td>Abdul Bari</td>
-      <td>Gate Smashers<br>Knowledge GATE</td>
-      <td><span class="tag">High</span></td>
-      <td>Asymptotic notations, recurrence relations, divide & conquer, greedy methods, dynamic programming, and backtracking.</td>
-    </tr>
-    <tr>
-      <td class="highlight">5CS5-11</td>
-      <td class="highlight">Wireless Communication</td>
-      <td>Education 4u</td>
-      <td>Engineering Funda<br>Dopamine</td>
-      <td><span class="tag" style="background:#e8f5e9; color:#2e7d32;">Medium-High</span></td>
-      <td>GSM architecture, cellular frequency reuse, spread spectrum techniques (DSSS/FHSS), and IEEE 802.11 standards.</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- Top Navigation & Banner -->
+  <header class="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 text-white shadow-xl border-b border-indigo-950/50 sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-indigo-600 text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">RTU Semester V</span>
+            <span class="bg-amber-500/20 text-amber-300 text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full border border-amber-500/30">
+              <i class="fa-solid fa-graduation-cap mr-1"></i> CSE | IT | AI&DS
+            </span>
+            <span class="bg-emerald-500/20 text-emerald-400 text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-500/30">
+              <i class="fa-solid fa-play mr-1"></i> In-App Player Active
+            </span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">V-Sem Prep Hub & In-App YouTube Player</h1>
+          <p class="text-slate-400 text-xs mt-0.5">Click any playlist below to launch video studies directly inside this dashboard while tracking real-time progress!</p>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 items-center">
+          <button onclick="toggleVercelGuide()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs px-3.5 py-2 rounded-lg shadow-lg shadow-indigo-950/20 transition-all flex items-center gap-2 border border-indigo-500/30">
+            <i class="fa-solid fa-circle-question"></i> Vercel 404 Guide
+          </button>
+          <button onclick="resetAllProgress()" class="bg-slate-800 hover:bg-rose-950/50 hover:text-rose-400 text-slate-300 text-xs font-medium px-3.5 py-2 rounded-lg transition-all border border-slate-700 flex items-center gap-1.5">
+            <i class="fa-solid fa-rotate-right"></i> Reset Progress
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Wrapper -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    
+    <!-- Quick Stats Cards & Overview -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl shadow-md border border-slate-800 flex items-center gap-3 sm:gap-4">
+        <div class="p-2 sm:p-3 bg-indigo-500/10 text-indigo-400 rounded-lg">
+          <i class="fa-solid fa-book-open text-lg sm:text-xl"></i>
+        </div>
+        <div>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Theory Papers</p>
+          <p class="text-base sm:text-lg font-bold text-slate-100">6 Core Subjects</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl shadow-md border border-slate-800 flex items-center gap-3 sm:gap-4">
+        <div class="p-2 sm:p-3 bg-rose-500/10 text-rose-400 rounded-lg">
+          <i class="fa-solid fa-circle-play text-lg sm:text-xl"></i>
+        </div>
+        <div>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Total Resources</p>
+          <p class="text-base sm:text-lg font-bold text-slate-100">17 Curated Links</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl shadow-md border border-slate-800 flex items-center gap-3 sm:gap-4">
+        <div class="p-2 sm:p-3 bg-emerald-500/10 text-emerald-400 rounded-lg">
+          <i class="fa-solid fa-spinner text-lg sm:text-xl"></i>
+        </div>
+        <div>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Study Status</p>
+          <p class="text-base sm:text-lg font-bold text-slate-100" id="overall-progress">0/17 Complete</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 p-3 sm:p-4 rounded-xl shadow-md border border-slate-800 flex items-center gap-3 sm:gap-4">
+        <div class="p-2 sm:p-3 bg-amber-500/10 text-amber-400 rounded-lg">
+          <i class="fa-solid fa-graduation-cap text-lg sm:text-xl"></i>
+        </div>
+        <div>
+          <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">RTU Target Year</p>
+          <p class="text-base sm:text-lg font-bold text-slate-100 text-amber-300">2026-27 Syllabus</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Panel with left content list & right in-app player -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- Left Hand Side: Content & Playlists Listing (8 Cols) -->
+      <div class="lg:col-span-7 xl:col-span-8 space-y-4">
+        
+        <!-- Search and filters -->
+        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3">
+          <div class="relative flex-1">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input type="text" id="searchBar" onkeyup="renderDashboard()" placeholder="Search code, subject, channel, topics..." 
+              class="w-full bg-slate-950/80 border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">View:</span>
+            <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
+              <button onclick="switchView('grid')" id="btn-grid-view" class="px-2.5 py-1 rounded text-xs transition-all font-semibold bg-indigo-600 text-white shadow">
+                <i class="fa-solid fa-grip mr-1"></i> Cards
+              </button>
+              <button onclick="switchView('table')" id="btn-table-view" class="px-2.5 py-1 rounded text-xs transition-all text-slate-400 font-semibold hover:text-white">
+                <i class="fa-solid fa-table-list mr-1"></i> List Table
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div id="tableView" class="hidden bg-slate-900/30 rounded-xl border border-slate-800/80 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-950 text-slate-400 text-[10px] uppercase tracking-wider font-semibold border-b border-slate-800">
+                  <th class="py-3 px-4">Subject & Code</th>
+                  <th class="py-3 px-4">Available In-App Resources</th>
+                  <th class="py-3 px-4">Alignment</th>
+                  <th class="py-3 px-4">Target focus areas</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60" id="tableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Grid Cards Container -->
+        <div id="gridView" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Empty search results -->
+        <div id="emptyState" class="hidden text-center py-12 bg-slate-900/20 rounded-xl border border-dashed border-slate-800">
+          <i class="fa-solid fa-magnifying-glass text-slate-700 text-3xl mb-2"></i>
+          <p class="text-sm text-slate-400 font-semibold">No preparation resource found</p>
+          <p class="text-xs text-slate-600">Try modifying your search or clear filters.</p>
+        </div>
+
+      </div>
+
+      <!-- Right Hand Side: Premium Embedded Video Player Panel (4 Cols on Large, Fixed/Floating/Embeddable container) -->
+      <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-4">
+        
+        <div class="bg-slate-900 rounded-xl border border-indigo-500/20 shadow-xl overflow-hidden shadow-indigo-950/10">
+          <!-- Header Area of Theater -->
+          <div class="bg-gradient-to-r from-slate-950 to-indigo-950 p-4 border-b border-slate-800 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-600 pulse-live"></span>
+              <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-200">Study Theater</h3>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="player-status-tag" class="text-[10px] font-semibold bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700">Offline</span>
+            </div>
+          </div>
+
+          <!-- Video Embed Frame Area -->
+          <div class="relative bg-slate-950 aspect-video flex items-center justify-center overflow-hidden group">
+            <iframe id="theater-iframe" class="w-full h-full hidden" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            
+            <!-- Default Placeholder if no playlist is active -->
+            <div id="theater-placeholder" class="text-center p-6 space-y-3">
+              <div class="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center mx-auto border border-indigo-500/20">
+                <i class="fa-brands fa-youtube text-xl text-rose-500"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-slate-300">No active lecture selected</p>
+                <p class="text-[11px] text-slate-500 max-w-xs mx-auto">Click any channel resource link on the left side to instantly stream the playlist right inside this workspace!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Lecture Details -->
+          <div id="theater-details" class="p-4 bg-slate-900 border-t border-slate-800/80 space-y-3 hidden">
+            <div>
+              <div class="flex justify-between items-start gap-2">
+                <h4 id="active-title" class="text-xs font-bold text-slate-100 line-clamp-1">Compiler Design - Gate Smashers</h4>
+                <span id="active-subject-badge" class="font-code text-[9px] font-bold bg-indigo-950 text-indigo-300 px-1.5 py-0.5 rounded border border-indigo-900">5CS4-02</span>
+              </div>
+              <p id="active-desc" class="text-[11px] text-slate-400 mt-1 line-clamp-2">Complete parsing tables and grammar calculations direct list.</p>
+            </div>
+
+            <!-- Tracker Tools & Timer -->
+            <div class="grid grid-cols-2 gap-2 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+              <div>
+                <span class="text-[9px] text-slate-500 font-bold uppercase tracking-wider block mb-0.5">Study Stopwatch</span>
+                <div class="flex items-center gap-1.5 text-slate-300 font-mono text-xs">
+                  <i class="fa-solid fa-clock text-[10px] text-indigo-400"></i>
+                  <span id="study-timer">00:00:00</span>
+                </div>
+              </div>
+              <div>
+                <span class="text-[9px] text-slate-500 font-bold uppercase tracking-wider block mb-0.5">Set Status</span>
+                <div class="relative">
+                  <select id="active-resource-status" onchange="updateActiveResourceStatus()" class="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-0.5 text-[10px] font-bold text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    <option value="not_started">⚪ Not Started</option>
+                    <option value="studying">🔵 Studying</option>
+                    <option value="completed">🟢 Completed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes Notepad section -->
+            <div class="space-y-1.5">
+              <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex justify-between items-center">
+                <span>Lecture Notes</span>
+                <span class="text-[9px] font-normal text-emerald-500"><i class="fa-solid fa-cloud-arrow-up"></i> Auto-saved</span>
+              </label>
+              <textarea id="study-notes" onkeyup="saveActiveNotes()" placeholder="Type important formulas, theorem definitions, or reference chapters here..." 
+                class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 h-24 resize-none font-sans"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timetable reference info based on WhatsApp Image 2026-07-12 at 17.51.03.jpeg -->
+        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-2">
+          <h4 class="font-extrabold text-slate-200 text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-days text-indigo-400"></i> Semester V Timetable Reference
+          </h4>
+          <p class="leading-relaxed text-[11px]">
+            Based on the global institute schedule in <code class="bg-slate-950 text-indigo-300 px-1 py-0.5 rounded font-code">WhatsApp Image 2026-07-12 at 17.51.03.jpeg</code>, theory lectures occur regularly. All 4 corresponding labs (AOA, CGM, CD, Java) are omitted from this preparation list to maximize focused subject performance.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Vercel Fix Modal Overlay -->
+  <div id="vercelModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-all duration-300">
+    <div class="bg-[#0f1322] border border-slate-800 rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden transform scale-95 transition-all duration-300 flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-950 p-5 text-white flex justify-between items-center border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg border border-emerald-500/20">
+            <i class="fa-solid fa-triangle-exclamation text-base"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold">Vercel Deployment 404 Fix</h3>
+            <p class="text-[11px] text-slate-400">Solve NOT_FOUND issue instantly in 3 simple steps</p>
+          </div>
+        </div>
+        <button onclick="toggleVercelGuide()" class="text-slate-400 hover:text-white transition-all text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-4 max-h-[65vh] text-slate-300 text-xs leading-relaxed">
+        <p>
+          Bhai, Vercel standard routing default root directory me **`index.html`** file ko dhoondti hai. Agar aapne main code ko kisi aur name se save kiya tha, toh launch screen par **404** error show hoga. Is project ko perfectly deploy karne ke liye niche likhi steps follow karein:
+        </p>
+
+        <div class="space-y-3">
+          <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-slate-200 mb-1 flex items-center gap-1.5">
+              <span class="inline-flex w-4 h-4 bg-indigo-600 text-white rounded-full items-center justify-center text-[10px]">1</span>
+              File Name should be strictly "index.html"
+            </h4>
+            <p class="text-slate-400 pl-5">
+              Apne visual studio or file manager me code ko **`index.html`** name se hi save kijiye. Kisi bhi tarah ke uppercase letters ya alternative directory layouts (jaise <code class="bg-slate-900 text-indigo-300 px-1 py-0.2 rounded font-code">timetable.html</code>) se default deploy check fail ho jayega.
+            </p>
+          </div>
+
+          <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-slate-200 mb-1 flex items-center gap-1.5">
+              <span class="inline-flex w-4 h-4 bg-indigo-600 text-white rounded-full items-center justify-center text-[10px]">2</span>
+              Keep File in the Root Directory
+            </h4>
+            <p class="text-slate-400 pl-5">
+              Ensure kijiye ki `index.html` aapke repository ke bilkul front main folder me ho. Agar aapne isko <code class="bg-slate-900 text-slate-300 px-1 py-0.2 rounded font-code">/src</code>, <code class="bg-slate-900 text-slate-300 px-1 py-0.2 rounded font-code">/public</code>, ya kisi dusre sub-folder ke andar chupa rakha hai, toh Vercel deployment me build path error aayega.
+            </p>
+          </div>
+
+          <div class="bg-slate-950/60 p-3 rounded-lg border border-slate-800">
+            <h4 class="font-bold text-slate-200 mb-1 flex items-center gap-1.5">
+              <span class="inline-flex w-4 h-4 bg-indigo-600 text-white rounded-full items-center justify-center text-[10px]">3</span>
+              Deploy instantly with GitHub
+            </h4>
+            <p class="text-slate-400 pl-5">
+              Simply is file ko push karein, aur Vercel automatic 30-seconds me deployment compile kar dega. Aur custom paths ke liye direct link par load karein (e.g., <code class="bg-slate-900 text-slate-300 px-1 py-0.2 rounded font-code">my-app.vercel.app/index.html</code>).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-slate-950 p-4 border-t border-slate-800 flex justify-end">
+        <button onclick="toggleVercelGuide()" class="bg-indigo-600 text-white font-semibold text-xs px-5 py-2 rounded-lg hover:bg-indigo-500 transition-all">
+          Got It, Clear!
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Comprehensive Subject Data matching precisely with 'WhatsApp Image 2026-07-12 at 17.51.03.jpeg'
+    // Storing exact playlist embeds provided by the user
+    const subjects = [
+      {
+        code: "5CS3-01",
+        name: "Information Theory & Coding",
+        abbr: "ITC",
+        alignment: "Very High Alignment",
+        color: "rose",
+        textColor: "text-rose-400",
+        borderColor: "border-rose-950/50",
+        bgColor: "bg-rose-950/10",
+        tagBg: "bg-rose-500/10",
+        tagText: "text-rose-400",
+        focus: "Entropy, mutual information calculations, Shannon-Fano, Huffman coding, and cyclic/linear block codes.",
+        resources: [
+          {
+            title: "RTU Wallah (RTU Specific)",
+            channel: "RTU Wallah",
+            type: "Playlist / Channel",
+            // Since channels can't be raw embedded directly, we target search list dynamically
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=rtu+wallah+information+theory+and+coding",
+            sourceUrl: "https://www.youtube.com/@rtu_wallah/playlists",
+            badge: "Syllabus Exact",
+            id: "itc_rtu_wallah"
+          },
+          {
+            title: "Easy Engineering Classes (Hindi Playlist)",
+            channel: "Easy Engineering",
+            type: "37-Video Playlist",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLV8vIYTIdSnZ6_S_S-Gsg2yW_M1N7D7L4",
+            sourceUrl: "https://www.youtube.com/watch?v=yNnMJUBZd2w&list=PLV8vIYTIdSnZ6_S_S-Gsg2yW_M1N7D7L4",
+            badge: "Deep Lectures",
+            id: "itc_easy_eng"
+          },
+          {
+            title: "Er Sahil ka Gyan (Exam Specific)",
+            channel: "Er Sahil",
+            type: "Numerical Masterclass",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=er+sahil+ka+gyan+information+theory+and+coding",
+            sourceUrl: "https://www.youtube.com/ersahilkagyan",
+            badge: "PYQ Oriented",
+            id: "itc_sahil_gyan"
+          }
+        ]
+      },
+      {
+        code: "5CS4-02",
+        name: "Compiler Design",
+        abbr: "CD",
+        alignment: "High Alignment",
+        color: "indigo",
+        textColor: "text-indigo-400",
+        borderColor: "border-indigo-950/50",
+        bgColor: "bg-indigo-950/10",
+        tagBg: "bg-indigo-500/10",
+        tagText: "text-indigo-400",
+        focus: "Constructing parsing tables (LL(1), LR(0), SLR(1), CLR(1), LALR(1)), SDT evaluation, and code optimization.",
+        resources: [
+          {
+            title: "Gate Smashers (Best for Exams)",
+            channel: "Gate Smashers",
+            type: "Target Playlist",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc",
+            sourceUrl: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc",
+            badge: "Most Popular",
+            id: "cd_gate_smashers"
+          },
+          {
+            title: "Knowledge GATE by Sanchit Sir",
+            channel: "Knowledge GATE",
+            type: "Syllabus Track",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=knowledge+gate+sanchit+jain+compiler+design",
+            sourceUrl: "http://tiny.cc/kg_yt_C",
+            badge: "Highly Concept Oriented",
+            id: "cd_knowledge_gate"
+          },
+          {
+            title: "Neso Academy (Visual Learning)",
+            channel: "Neso Academy",
+            type: "Animated Lectures",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=neso+academy+compiler+design",
+            sourceUrl: "https://www.nesoacademy.org",
+            badge: "Clean Graphics",
+            id: "cd_neso_academy"
+          }
+        ]
+      },
+      {
+        code: "5CS4-03",
+        name: "Operating Systems",
+        abbr: "OS",
+        alignment: "High Alignment",
+        color: "sky",
+        textColor: "text-sky-400",
+        borderColor: "border-sky-950/50",
+        bgColor: "bg-sky-950/10",
+        tagBg: "bg-sky-500/10",
+        tagText: "text-sky-400",
+        focus: "CPU scheduling, deadlock avoidance/prevention (Banker's Algorithm), paging, segmentation, and page replacement.",
+        resources: [
+          {
+            title: "Gate Smashers (Numericals & Core Theory)",
+            channel: "Gate Smashers",
+            type: "Numerical Core Playlist",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p",
+            sourceUrl: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p",
+            badge: "Numerical Heavy",
+            id: "os_gate_smashers"
+          },
+          {
+            title: "Knowledge GATE by Sanchit Sir",
+            channel: "Knowledge GATE",
+            type: "In-Depth Class Lectures",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=knowledge+gate+sanchit+jain+operating+systems",
+            sourceUrl: "http://tiny.cc/kg_yt_OS",
+            badge: "Concept Booster",
+            id: "os_knowledge_gate"
+          },
+          {
+            title: "Neso Academy OS (Architecture)",
+            channel: "Neso Academy",
+            type: "High Quality Animations",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O",
+            sourceUrl: "https://www.nesoacademy.org/cs/03-operating-system",
+            badge: "Animation Heavy",
+            id: "os_neso_academy"
+          }
+        ]
+      },
+      {
+        code: "5CS4-04",
+        name: "Computer Graphics & Multimedia",
+        abbr: "CGM",
+        alignment: "Very High Alignment",
+        color: "emerald",
+        textColor: "text-emerald-400",
+        borderColor: "border-emerald-950/50",
+        bgColor: "bg-emerald-950/10",
+        tagBg: "bg-emerald-500/10",
+        tagText: "text-emerald-400",
+        focus: "DDA and Bresenham's algorithms, 2D/3D transformations, Bezier/B-Spline curves, and polygon filling.",
+        resources: [
+          {
+            title: "5 Minutes Engineering (Quick & Easy)",
+            channel: "5 Min Engineering",
+            type: "Speed Run Playlist",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=5+minutes+engineering+computer+graphics",
+            sourceUrl: "https://www.youtube.com/playlist?list=PLfVsf4Bjg79ExSclI691yV6vF7f-N4vsh",
+            badge: "Exam Night Savior",
+            id: "cgm_5_min"
+          },
+          {
+            title: "TutorialsSpace (Er. Deepak Garg)",
+            channel: "TutorialsSpace",
+            type: "Classic Lectures",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=tutorialsspace+computer+graphics+deepak+garg",
+            sourceUrl: "https://www.youtube.com/@TutorialsSpace",
+            badge: "Derivation Perfect",
+            id: "cgm_tutorials"
+          }
+        ]
+      },
+      {
+        code: "5CS4-05",
+        name: "Analysis of Algorithms",
+        abbr: "AOA",
+        alignment: "High Alignment",
+        color: "amber",
+        textColor: "text-amber-400",
+        borderColor: "border-amber-950/50",
+        bgColor: "bg-amber-950/10",
+        tagBg: "bg-amber-500/10",
+        tagText: "text-amber-400",
+        focus: "Asymptotic notations, recurrence relations, divide & conquer, greedy methods, dynamic programming, and backtracking.",
+        resources: [
+          {
+            title: "Abdul Bari (The Legend of Algorithms)",
+            channel: "Abdul Bari",
+            type: "Visual Core Playlist",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=abdul+bari+algorithms",
+            sourceUrl: "https://www.youtube.com/@AbdulBari",
+            badge: "Legend Class",
+            id: "aoa_abdul_bari"
+          },
+          {
+            title: "Gate Smashers (Exam Focused Revision)",
+            channel: "Gate Smashers",
+            type: "Key Concept Course",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLxCzCOWd7aiHcmS4i14bI0VrMbZTUvlTa",
+            sourceUrl: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHcmS4i14bI0VrMbZTUvlTa",
+            badge: "Direct Exam PYQs",
+            id: "aoa_gate_smashers"
+          },
+          {
+            title: "Knowledge GATE by Sanchit Sir",
+            channel: "Knowledge GATE",
+            type: "Formula Track",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=knowledge+gate+sanchit+jain+design+and+analysis+of+algorithms",
+            sourceUrl: "https://www.youtube.com/@KnowledgeGate_SanchitJain",
+            badge: "Logical Math",
+            id: "aoa_knowledge_gate"
+          }
+        ]
+      },
+      {
+        code: "5CS5-11",
+        name: "Wireless Communication",
+        abbr: "WC",
+        alignment: "Medium-High Alignment",
+        color: "fuchsia",
+        textColor: "text-fuchsia-400",
+        borderColor: "border-fuchsia-950/50",
+        bgColor: "bg-fuchsia-950/10",
+        tagBg: "bg-fuchsia-500/10",
+        tagText: "text-fuchsia-400",
+        focus: "GSM architecture, cellular frequency reuse, spread spectrum techniques (DSSS/FHSS), and IEEE 802.11 standards.",
+        resources: [
+          {
+            title: "NPTEL - Prof. Vivek Ashok Bohara",
+            channel: "NPTEL IIITD",
+            type: "Academic Lecture Series",
+            embedUrl: "https://www.youtube.com/embed/videoseries?list=PLbMVogVj5nJSi8FUsvglRxLtN1TN9y4nx",
+            sourceUrl: "https://www.youtube.com/playlist?list=PLbMVogVj5nJSi8FUsvglRxLtN1TN9y4nx",
+            badge: "High-level Core",
+            id: "wc_nptel"
+          },
+          {
+            title: "Education 4u (Bhanu Priya)",
+            channel: "Education 4u",
+            type: "Fast Review Playlist",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=education+4u+wireless+communication",
+            sourceUrl: "https://www.youtube.com/@education4uofficial",
+            badge: "Fast Tracker",
+            id: "wc_edu4u"
+          },
+          {
+            title: "Dopamine (Vaishali Kikan)",
+            channel: "Dopamine Edu",
+            type: "Theory & Diagrams Course",
+            embedUrl: "https://www.youtube.com/embed?listType=search&list=dopamine+wireless+communication+vaishali+kikan",
+            sourceUrl: "https://www.youtube.com/@dopamine_edu",
+            badge: "Super Diagrams",
+            id: "wc_dopamine"
+          }
+        ]
+      }
+    ];
+
+    // State management: Load progress tracker and notes from LocalStorage
+    let progressDB = JSON.parse(localStorage.getItem('rtu_prep_vsem_progress')) || {};
+    let notesDB = JSON.parse(localStorage.getItem('rtu_prep_vsem_notes')) || {};
+    
+    // View state
+    let activeView = 'grid'; // grid or table
+    let activeResourceId = null; // Currently streaming ID
+
+    // Timer variables
+    let timerInterval = null;
+    let timerSeconds = 0;
+
+    // Start Timer function
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerSeconds = 0;
+      updateTimerDisplay();
+      
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+    }
+
+    function updateTimerDisplay() {
+      const hrs = Math.floor(timerSeconds / 3600).toString().padStart(2, '0');
+      const mins = Math.floor((timerSeconds % 3600) / 60).toString().padStart(2, '0');
+      const secs = (timerSeconds % 60).toString().padStart(2, '0');
+      document.getElementById('study-timer').textContent = `${hrs}:${mins}:${secs}`;
+    }
+
+    // Launch dynamic video stream in theater
+    function launchLecture(resourceId, embedUrl, title, desc, subjectCode) {
+      activeResourceId = resourceId;
+      
+      // Update UI panels
+      const iframe = document.getElementById('theater-iframe');
+      const placeholder = document.getElementById('theater-placeholder');
+      const details = document.getElementById('theater-details');
+      const statusTag = document.getElementById('player-status-tag');
+      
+      placeholder.classList.add('hidden');
+      iframe.classList.remove('hidden');
+      details.classList.remove('hidden');
+      
+      // Update URL and Metadata
+      iframe.src = embedUrl;
+      document.getElementById('active-title').textContent = title;
+      document.getElementById('active-desc').textContent = desc;
+      document.getElementById('active-subject-badge').textContent = subjectCode;
+      statusTag.textContent = "Streaming Live";
+      statusTag.classList.remove('bg-slate-800', 'text-slate-400');
+      statusTag.classList.add('bg-rose-600/20', 'text-rose-400', 'border-rose-500/30');
+
+      // Set active status in dropdown
+      const activeStatus = progressDB[resourceId] || "not_started";
+      document.getElementById('active-resource-status').value = activeStatus;
+
+      // Load existing notes
+      document.getElementById('study-notes').value = notesDB[resourceId] || "";
+
+      // Start the stopwatch tracker
+      startTimer();
+      
+      // Add visual active marker highlighting on LHS lists
+      renderDashboard();
+    }
+
+    // Save and trace local status
+    function setResourceProgress(resourceId, status) {
+      progressDB[resourceId] = status;
+      localStorage.setItem('rtu_prep_vsem_progress', JSON.stringify(progressDB));
+      updateProgressCounts();
+      renderDashboard();
+    }
+
+    // Updates status when selection changes in the Theater dropdown
+    function updateActiveResourceStatus() {
+      if (!activeResourceId) return;
+      const status = document.getElementById('active-resource-status').value;
+      setResourceProgress(activeResourceId, status);
+    }
+
+    // Save local study pad note drafts
+    function saveActiveNotes() {
+      if (!activeResourceId) return;
+      const text = document.getElementById('study-notes').value;
+      notesDB[activeResourceId] = text;
+      localStorage.setItem('rtu_prep_vsem_notes', JSON.stringify(notesDB));
+    }
+
+    // Reset user tracking DB
+    function resetAllProgress() {
+      if (confirm("Bhai, kya aap sach me saari prepration progress aur key notes reset karna chahte hain?")) {
+        progressDB = {};
+        notesDB = {};
+        localStorage.removeItem('rtu_prep_vsem_progress');
+        localStorage.removeItem('rtu_prep_vsem_notes');
+        
+        // Reset Theater state
+        activeResourceId = null;
+        stopTimer();
+        document.getElementById('theater-iframe').src = "";
+        document.getElementById('theater-iframe').classList.add('hidden');
+        document.getElementById('theater-placeholder').classList.remove('hidden');
+        document.getElementById('theater-details').classList.add('hidden');
+        document.getElementById('player-status-tag').textContent = "Offline";
+        document.getElementById('player-status-tag').classList.add('bg-slate-800', 'text-slate-400');
+        document.getElementById('player-status-tag').classList.remove('bg-rose-600/20', 'text-rose-400', 'border-rose-500/30');
+
+        updateProgressCounts();
+        renderDashboard();
+      }
+    }
+
+    // Update progress numbers
+    function updateProgressCounts() {
+      let total = 0;
+      let completed = 0;
+      
+      subjects.forEach(sub => {
+        sub.resources.forEach(res => {
+          total++;
+          if (progressDB[res.id] === 'completed') {
+            completed++;
+          }
+        });
+      });
+
+      document.getElementById('overall-progress').textContent = `${completed}/${total} Complete`;
+    }
+
+    // Switch view structure
+    function switchView(view) {
+      activeView = view;
+      const tableView = document.getElementById('tableView');
+      const gridView = document.getElementById('gridView');
+      const btnGrid = document.getElementById('btn-grid-view');
+      const btnTable = document.getElementById('btn-table-view');
+
+      if (view === 'grid') {
+        tableView.classList.add('hidden');
+        gridView.classList.remove('hidden');
+        btnGrid.classList.add('bg-indigo-600', 'text-white', 'shadow');
+        btnGrid.classList.remove('text-slate-400');
+        btnTable.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+        btnTable.classList.add('text-slate-400');
+      } else {
+        gridView.classList.add('hidden');
+        tableView.classList.remove('hidden');
+        btnTable.classList.add('bg-indigo-600', 'text-white', 'shadow');
+        btnTable.classList.remove('text-slate-400');
+        btnGrid.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+        btnGrid.classList.add('text-slate-400');
+      }
+      renderDashboard();
+    }
+
+    // Toggle Modal guide
+    function toggleVercelGuide() {
+      const modal = document.getElementById('vercelModal');
+      modal.classList.toggle('hidden');
+    }
+
+    // Main UI Render Function
+    function renderDashboard() {
+      const query = document.getElementById('searchBar').value.toLowerCase();
+      
+      const filtered = subjects.filter(sub => {
+        const matchesCode = sub.code.toLowerCase().includes(query);
+        const matchesName = sub.name.toLowerCase().includes(query);
+        const matchesFocus = sub.focus.toLowerCase().includes(query);
+        const matchesResource = sub.resources.some(res => 
+          res.title.toLowerCase().includes(query) || res.channel.toLowerCase().includes(query)
+        );
+        return matchesCode || matchesName || matchesFocus || matchesResource;
+      });
+
+      const tableBody = document.getElementById('tableBody');
+      const gridView = document.getElementById('gridView');
+      const emptyState = document.getElementById('emptyState');
+
+      if (filtered.length === 0) {
+        tableBody.innerHTML = '';
+        gridView.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      // Generate Table Rows
+      tableBody.innerHTML = filtered.map(sub => {
+        // Render resources buttons inside row
+        const resourceButtonsHtml = sub.resources.map(res => {
+          const status = progressDB[res.id] || "not_started";
+          let statusColor = "text-slate-500 border-slate-800 bg-slate-900/40";
+          let icon = "fa-circle-play text-slate-500";
+          
+          if (status === 'completed') {
+            statusColor = "text-emerald-400 border-emerald-950 bg-emerald-950/20";
+            icon = "fa-circle-check text-emerald-400";
+          } else if (status === 'studying') {
+            statusColor = "text-indigo-400 border-indigo-950 bg-indigo-950/20";
+            icon = "fa-clock text-indigo-400";
+          }
+          
+          const isActive = activeResourceId === res.id ? 'ring-2 ring-indigo-500 ring-offset-2 ring-offset-slate-950' : '';
+
+          return `
+            <div class="flex items-center justify-between p-2 rounded-lg border border-slate-800 bg-slate-950/50 ${isActive} gap-2">
+              <button onclick="launchLecture('${res.id}', '${res.embedUrl}', '${res.title}', '${sub.focus}', '${sub.code}')" 
+                      class="flex items-center gap-1.5 text-[11px] font-bold text-slate-200 hover:text-indigo-400 text-left transition-colors flex-1 line-clamp-1">
+                <i class="fa-brands fa-youtube text-rose-500"></i> ${res.channel}
+              </button>
+              
+              <div class="flex items-center gap-1 shrink-0">
+                <span class="text-[9px] px-1.5 py-0.2 bg-slate-900 border border-slate-800 rounded text-slate-400 font-semibold">${res.badge}</span>
+                <select onchange="setResourceProgress('${res.id}', this.value)" class="bg-slate-900 text-[10px] rounded border border-slate-800 text-slate-300 p-0.5 focus:outline-none">
+                  <option value="not_started" ${status === 'not_started' ? 'selected' : ''}>⚪ Not Started</option>
+                  <option value="studying" ${status === 'studying' ? 'selected' : ''}>🔵 Studying</option>
+                  <option value="completed" ${status === 'completed' ? 'selected' : ''}>🟢 Completed</option>
+                </select>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <tr class="hover:bg-slate-900/20 transition-all">
+            <td class="py-4 px-4">
+              <span class="font-code text-[11px] font-bold text-slate-500 block">${sub.code}</span>
+              <span class="text-xs font-bold text-slate-200">${sub.name}</span>
+            </td>
+            <td class="py-4 px-4 space-y-1.5 max-w-xs">
+              ${resourceButtonsHtml}
+            </td>
+            <td class="py-4 px-4">
+              <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${sub.tagBg} ${sub.tagText} border border-indigo-500/10">
+                ${sub.alignment}
+              </span>
+            </td>
+            <td class="py-4 px-4 text-[11px] text-slate-400 leading-relaxed font-normal max-w-xs">${sub.focus}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Generate Card UI
+      gridView.innerHTML = filtered.map(sub => {
+        
+        // Resource progress indicator bar inside card
+        let doneNum = 0;
+        sub.resources.forEach(res => {
+          if (progressDB[res.id] === 'completed') doneNum++;
+        });
+        const percent = Math.round((doneNum / sub.resources.length) * 100);
+
+        // Generate Playlist Blocks
+        const listItemsHtml = sub.resources.map(res => {
+          const status = progressDB[res.id] || "not_started";
+          let statusBadge = "bg-slate-950 text-slate-400 border-slate-800";
+          let statusIcon = "fa-regular fa-circle text-slate-600";
+          
+          if (status === 'completed') {
+            statusBadge = "bg-emerald-950/20 text-emerald-400 border-emerald-900/30";
+            statusIcon = "fa-solid fa-circle-check text-emerald-500";
+          } else if (status === 'studying') {
+            statusBadge = "bg-indigo-950/20 text-indigo-400 border-indigo-900/30";
+            statusIcon = "fa-solid fa-spinner animate-spin text-indigo-500";
+          }
+
+          const isStreaming = activeResourceId === res.id ? 'ring-2 ring-indigo-500 border-indigo-500 bg-indigo-950/20' : 'bg-slate-950/40 hover:bg-slate-950 border-slate-800';
+
+          return `
+            <div class="flex items-center justify-between p-2.5 rounded-lg border transition-all ${isStreaming} gap-1">
+              <div class="flex items-center gap-2 flex-1 min-w-0">
+                <button onclick="launchLecture('${res.id}', '${res.embedUrl}', '${res.title}', '${sub.focus}', '${sub.code}')" 
+                        class="flex items-center gap-1.5 font-bold text-slate-300 hover:text-indigo-400 transition-all text-left text-xs truncate">
+                  <i class="fa-brands fa-youtube text-rose-500 text-sm"></i>
+                  <span>${res.channel}</span>
+                </button>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="text-[9px] text-slate-500 font-semibold">${res.badge}</span>
+                <select onchange="setResourceProgress('${res.id}', this.value)" 
+                        class="bg-slate-900 text-[10px] font-semibold text-slate-300 rounded border border-slate-800 focus:outline-none p-0.5">
+                  <option value="not_started" ${status === 'not_started' ? 'selected' : ''}>⚪ Start</option>
+                  <option value="studying" ${status === 'studying' ? 'selected' : ''}>🔵 Study</option>
+                  <option value="completed" ${status === 'completed' ? 'selected' : ''}>🟢 Done</option>
+                </select>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="bg-slate-900/40 rounded-xl border border-slate-800 p-4 shadow-sm hover:border-slate-700/60 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2.5">
+                <span class="font-code text-[11px] font-bold text-slate-500">${sub.code} (${sub.abbr})</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${sub.tagBg} ${sub.tagText} border border-indigo-500/10">
+                  ${sub.alignment}
+                </span>
+              </div>
+
+              <h3 class="text-sm font-extrabold text-slate-100 mb-1">${sub.name}</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed mb-4">${sub.focus}</p>
+
+              <!-- Progress Bar indicators inside cards -->
+              <div class="mb-4">
+                <div class="flex justify-between text-[10px] text-slate-500 font-bold mb-1 uppercase tracking-wider">
+                  <span>Prep Tracker</span>
+                  <span class="text-slate-300 font-code">${percent}% Done</span>
+                </div>
+                <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden border border-slate-800">
+                  <div class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: ${percent}%"></div>
+                </div>
+              </div>
+
+              <!-- Playlists list -->
+              <div class="space-y-1.5">
+                <span class="text-[9px] text-slate-500 font-bold uppercase tracking-wider block mb-1">Recommended Videos (Play In-App)</span>
+                ${listItemsHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Bootloader when page initialises
+    window.onload = function() {
+      updateProgressCounts();
+      renderDashboard();
+    }
+  </script>
 
 </body>
 </html>
+```
+eof
+
+### Dynamic features included:
+- **In-App Media Player Modal:** When clicking on any available resource card (such as *RTU Wallah*, *Gate Smashers*, or *Neso Academy*), it mounts and executes direct embedded playbacks inside the dashboard using the **Study Theater panel**.
+- **Stopwatch Integration:** Track how much focus time has been allocated to a subject using the real-time session duration clock.
+- **Study Pad Draft Auto-saves:** Take notes on formulas and derivations. They auto-save instantly to `localStorage`.
+- **Integrated Progress Rings:** Tracks overall status dynamically, making exam prep a fully monitored roadmap.
+
+Let me know if you want to add any other subject notes or adjust the layout!
