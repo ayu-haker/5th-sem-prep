@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th {
+    background-color: #2c3e50;
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  tr:nth-of-type(even) {
+    background-color: #f3f4f6;
+  }
+  tr:last-of-type td {
+    border-bottom: 2px solid #2c3e50;
+  }
+ .highlight {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+ .tag {
+    background: #e1f5fe;
+    color: #0288d1;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>RTU Code</th>
+      <th>Subject Name</th>
+      <th>Primary Channel</th>
+      <th>Alternative Channels</th>
+      <th>Alignment</th>
+      <th>Key Exam Focus Areas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="highlight">5CS3-01</td>
+      <td class="highlight">Information Theory & Coding</td>
+      <td>RTU Wallah</td>
+      <td>Easy Engineering Classes<br>Engineering Funda</td>
+      <td><span class="tag" style="background:#ffebee; color:#c62828;">Very High</span></td>
+      <td>Entropy, mutual information calculations, Shannon-Fano, Huffman coding, and cyclic/linear block codes.</td>
+    </tr>
+    <tr>
+      <td class="highlight">5CS4-02</td>
+      <td class="highlight">Compiler Design</td>
+      <td>Gate Smashers</td>
+      <td>Neso Academy<br>Knowledge GATE</td>
+      <td><span class="tag">High</span></td>
+      <td>Constructing parsing tables (LL(1), LR(0), SLR(1), CLR(1), LALR(1)), SDT evaluation, and code optimization.</td>
+    </tr>
+    <tr>
+      <td class="highlight">5CS4-03</td>
+      <td class="highlight">Operating Systems</td>
+      <td>Neso Academy</td>
+      <td>Gate Smashers</td>
+      <td><span class="tag">High</span></td>
+      <td>CPU scheduling, deadlock avoidance/prevention (Banker's Algorithm), paging, segmentation, and page replacement.</td>
+    </tr>
+    <tr>
+      <td class="highlight">5CS4-04</td>
+      <td class="highlight">Computer Graphics & Multimedia</td>
+      <td>TutorialsSpace</td>
+      <td>Edulogy<br>5 Minutes Engineering</td>
+      <td><span class="tag" style="background:#ffebee; color:#c62828;">Very High</span></td>
+      <td>DDA and Bresenham's algorithms, 2D/3D transformations, Bezier/B-Spline curves, and polygon filling.</td>
+    </tr>
+    <tr>
+      <td class="highlight">5CS4-05</td>
+      <td class="highlight">Analysis of Algorithms</td>
+      <td>Abdul Bari</td>
+      <td>Gate Smashers<br>Knowledge GATE</td>
+      <td><span class="tag">High</span></td>
+      <td>Asymptotic notations, recurrence relations, divide & conquer, greedy methods, dynamic programming, and backtracking.</td>
+    </tr>
+    <tr>
+      <td class="highlight">5CS5-11</td>
+      <td class="highlight">Wireless Communication</td>
+      <td>Education 4u</td>
+      <td>Engineering Funda<br>Dopamine</td>
+      <td><span class="tag" style="background:#e8f5e9; color:#2e7d32;">Medium-High</span></td>
+      <td>GSM architecture, cellular frequency reuse, spread spectrum techniques (DSSS/FHSS), and IEEE 802.11 standards.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
